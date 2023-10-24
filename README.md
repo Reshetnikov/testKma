@@ -31,7 +31,11 @@ USE default
 SELECT * FROM requests;
 ```
 ```
-docker compose exec -it mariadb mariadb 
+docker compose exec -it  mariadb mariadb -umariaUser -pmariaPassword
 USE mariaDb
 SELECT * FROM requests;
 ```
+### Получение списка контейнеров
+```
+``docker compose ps``
+`````

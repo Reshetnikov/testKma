@@ -1,0 +1,10 @@
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/README.md
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/composer.json
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/emit_log.php
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/emit_log_direct.php
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/emit_log_topic.php
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/new_task.php
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/receive.php
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/receive_logs.php
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/receive_logs_direct.php
+https://raw.githubusercontent.com/rabbitmq/rabbitmq-tutorials/main/php/receive_logs_topic.php

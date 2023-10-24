@@ -1,0 +1,7 @@
+{
+    "require": {
+        "php-amqplib/php-amqplib": "^3.0",
+        "vlucas/phpdotenv": "^5.5",
+        "smi2/phpclickhouse": "^1.5"
+    }
+}

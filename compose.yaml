@@ -1,0 +1,70 @@
+services:
+  app-php:
+    build:
+      context: .
+      dockerfile: php/Dockerfile
+    volumes:
+      - ./:/var/www/testKMA
+    depends_on:
+      - mariadb
+      - clickhouse
+      - rabbitmq
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://nginx/index.php" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - ${APP_PORT}:80
+    depends_on:
+      - app-php
+    volumes:
+      - ./:/var/www/testKMA
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    healthcheck:
+      test: [ "CMD", "curl", "--fail", "http://localhost/app.css" ]
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  mariadb:
+    image: mariadb:11.1.2
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD}
+      MARIADB_DATABASE: ${MARIADB_DATABASE}
+      MARIADB_USER: ${MARIADB_USER}
+      MARIADB_PASSWORD: ${MARIADB_PASSWORD}
+    volumes:
+      - ./mariadb/dump/:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: "mariadb -hmariadb -u${MARIADB_USER} -p${MARIADB_PASSWORD} -e \"SELECT * FROM requests\" ${MARIADB_DATABASE}"
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:23.8.4-alpine
+    volumes:
+      - ./clickhouse/dump/:/docker-entrypoint-initdb.d/
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:8123/?query=SELECT%201 || exit 1
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+  rabbitmq:
+    image: rabbitmq:3.12.7-management-alpine
+    healthcheck:
+      test: rabbitmq-diagnostics -q ping
+      interval: 5s
+      timeout: 5s
+      retries: 3
+
+
+#  adminer:
+#    image: adminer
+#    ports:
+#      - ${ADMINER_PORT}:8080

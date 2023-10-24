@@ -10,10 +10,10 @@ COPY php/supervisord.conf /etc/supervisord.conf
 COPY php/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 WORKDIR /var/www/testKMA
-#COPY composer.json composer.json
-#COPY composer.lock composer.lock
-#RUN composer install
-#COPY . .
+COPY composer.json composer.json
+COPY composer.lock composer.lock
+RUN composer install
+COPY . .
 
 CMD ["supervisord"]
 

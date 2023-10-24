@@ -14,7 +14,7 @@ if ($handle) {
     while (($line = fgets($handle)) !== false) {
         $url = trim($line);
         if (strlen($url)) {
-            $sleep = rand(1,10);
+            $sleep = rand(10,100);
             echo " [x] Sent $url after $sleep seconds\n";
             sleep($sleep);
             $msg = new AMQPMessage($url);

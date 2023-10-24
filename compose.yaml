@@ -3,8 +3,8 @@ services:
     build:
       context: .
       dockerfile: php/Dockerfile
-    volumes:
-      - ./:/var/www/testKMA
+#    volumes:
+#      - ./:/var/www/testKMA
     depends_on:
       - mariadb
       - clickhouse

@@ -37,5 +37,5 @@ SELECT * FROM requests;
 ```
 ### Получение списка контейнеров
 ```
-``docker compose ps``
-`````
+docker compose ps
+```
